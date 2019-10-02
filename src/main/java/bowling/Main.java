@@ -7,6 +7,9 @@ import bowling.business.score.TenPinScorer;
 import bowling.business.throwmarker.TenPinThrowMarker;
 import bowling.business.throwmarker.ThrowMarker;
 import bowling.business.BowlingGame;
+import bowling.business.parser.ConsoleLineParser;
+import bowling.business.parser.LineParser;
+import bowling.business.parser.ValidationError;
 
 import java.util.Objects;
 
@@ -21,8 +24,13 @@ public class Main {
             if(Objects.isNull(line)) {
                 break;
             }
-            String[] frameParts = line.split(" ");
-            tenPinGame.registerFrame(frameParts[0], Integer.valueOf(frameParts[1]));
+            LineParser lineParser = new ConsoleLineParser();
+            ValidationError err = lineParser.parse(line);
+            if (Objects.nonNull(err)) {
+                lineParser.onError();
+            } else {
+                tenPinGame.registerFrame(lineParser.getPlayerName(), lineParser.getPins());
+            }
         }
         inputLoader.finish();
     }
