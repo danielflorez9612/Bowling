@@ -18,16 +18,16 @@ public class Main {
         Scorer scorer = new TenPinScorer();
         ThrowMarker marker = new TenPinThrowMarker();
         InputLoader inputLoader = new ConsoleInputLoader();
-        BowlingGame tenPinGame = new BowlingGame(scorer, marker);
+        LineParser lineParser = new ConsoleLineParser();
+        BowlingGame tenPinGame = new BowlingGame(scorer, marker, lineParser);
         while (inputLoader.hasNextInput()) {
             try {
                 String line = inputLoader.getLine();
                 if(Objects.isNull(line)) {
                     break;
                 }
-                LineParser lineParser = new ConsoleLineParser();
+                tenPinGame.registerFrame(line);
                 lineParser.parse(line);
-                tenPinGame.registerFrame(lineParser.getPlayerName(), lineParser.getPins());
             } catch (GameException e) {
                 e.onError();
             }

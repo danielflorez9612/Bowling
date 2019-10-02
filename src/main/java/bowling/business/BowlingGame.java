@@ -1,5 +1,7 @@
 package bowling.business;
 
+import bowling.business.parser.LineParser;
+import bowling.business.parser.ParsedLine;
 import bowling.business.score.Scorer;
 import bowling.business.throwmarker.ThrowMarker;
 import bowling.exceptions.GameException;
@@ -11,8 +13,13 @@ import lombok.Data;
 public class BowlingGame {
     private Scorer scorer;
     private ThrowMarker throwMarker;
+    private LineParser lineParser;
 
-    public void registerFrame(String playerName, Integer pins) throws GameException {
-        this.throwMarker.markThrow(playerName, pins);
+    public void registerFrame(String line) throws GameException {
+        ParsedLine parsedLine = lineParser.parse(line);
+        this.throwMarker.markThrow(parsedLine.getPlayerName(), parsedLine.getPins());
+    }
+
+
     }
 }
