@@ -8,7 +8,7 @@ import bowling.score.Scorer;
 import bowling.score.TenPinScorer;
 import bowling.throwmarker.TenPinThrowMarker;
 import bowling.throwmarker.ThrowMarker;
-import bowling.dataloader.parser.ConsoleLineParser;
+import bowling.dataloader.parser.DefaultLineParser;
 import bowling.dataloader.parser.LineParser;
 import bowling.exceptions.GameException;
 
@@ -19,7 +19,7 @@ public class Main {
         Scorer scorer = new TenPinScorer();
         ThrowMarker marker = new TenPinThrowMarker();
         InputLoader inputLoader = new ConsoleInputLoader();
-        LineParser lineParser = new ConsoleLineParser();
+        LineParser lineParser = new DefaultLineParser();
         GamePrinter gamePrinter = new ConsoleGamePrinter(GameMode.TEN_PIN);
         BowlingGame tenPinGame = new BowlingGame(scorer, marker, lineParser, gamePrinter);
         while (inputLoader.hasNextInput()) {
