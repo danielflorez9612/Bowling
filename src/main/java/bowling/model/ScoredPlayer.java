@@ -1,13 +1,13 @@
 package bowling.model;
 
-import lombok.Data;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
+@Getter
 public class ScoredPlayer {
     private Player player;
     private List<ScoredFrame> scores;

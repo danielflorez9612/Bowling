@@ -1,8 +1,10 @@
 package bowling.dataloader.parser;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class ParsedLine {
     private String playerName;
     private Integer pins;

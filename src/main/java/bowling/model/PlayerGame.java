@@ -1,10 +1,16 @@
 package bowling.model;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
+import java.util.Optional;
+import java.util.Set;
 
-@Data
+@Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class PlayerGame {
     @EqualsAndHashCode.Include
@@ -18,8 +24,9 @@ public class PlayerGame {
         this.frames = new LinkedHashSet<>();
     }
 
-    public void addFrame(Frame frame) {
+    public PlayerGame addFrame(Frame frame) {
         this.frames.add(frame);
+        return this;
     }
 
     public Optional<Frame> getLastFrame() {

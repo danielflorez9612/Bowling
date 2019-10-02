@@ -1,12 +1,16 @@
 package bowling.model;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Optional;
 
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@AllArgsConstructor
 public class Frame {
     @EqualsAndHashCode.Include
     private Integer frameNumber;

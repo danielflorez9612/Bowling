@@ -2,15 +2,13 @@ package bowling;
 
 import bowling.dataloader.parser.LineParser;
 import bowling.dataloader.parser.ParsedLine;
+import bowling.exceptions.GameException;
+import bowling.model.FinishedGame;
 import bowling.printer.GamePrinter;
 import bowling.score.Scorer;
 import bowling.throwmarker.ThrowMarker;
-import bowling.exceptions.GameException;
-import bowling.model.FinishedGame;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 
-@Data
 @AllArgsConstructor
 public class BowlingGame {
     private Scorer scorer;

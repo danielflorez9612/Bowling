@@ -1,13 +1,15 @@
 package bowling.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 import java.util.Optional;
 
-@Data
+@Getter
 public class ScoredFrame {
     private Frame frame;
+    @Setter
     private Integer score;
 
     public ScoredFrame(Frame frame) {
