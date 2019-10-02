@@ -26,4 +26,8 @@ public class PlayerGame {
     public Optional<Frame> getLastFrame() {
         return this.frames.stream().max(Comparator.comparingInt(Frame::getFrameNumber));
     }
+
+    public int getFrameCounter() {
+        return frames.size();
+    }
 }

@@ -9,7 +9,7 @@ import bowling.business.throwmarker.ThrowMarker;
 import bowling.business.BowlingGame;
 import bowling.business.parser.ConsoleLineParser;
 import bowling.business.parser.LineParser;
-import bowling.business.parser.ValidationError;
+import bowling.exceptions.GameException;
 
 import java.util.Objects;
 
@@ -20,16 +20,16 @@ public class Main {
         InputLoader inputLoader = new ConsoleInputLoader();
         BowlingGame tenPinGame = new BowlingGame(scorer, marker);
         while (inputLoader.hasNextInput()) {
-            String line = inputLoader.getLine();
-            if(Objects.isNull(line)) {
-                break;
-            }
-            LineParser lineParser = new ConsoleLineParser();
-            ValidationError err = lineParser.parse(line);
-            if (Objects.nonNull(err)) {
-                lineParser.onError();
-            } else {
+            try {
+                String line = inputLoader.getLine();
+                if(Objects.isNull(line)) {
+                    break;
+                }
+                LineParser lineParser = new ConsoleLineParser();
+                lineParser.parse(line);
                 tenPinGame.registerFrame(lineParser.getPlayerName(), lineParser.getPins());
+            } catch (GameException e) {
+                e.onError();
             }
         }
         inputLoader.finish();
