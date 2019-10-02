@@ -1,4 +1,4 @@
-package bowling.business.dataloader;
+package bowling.dataloader;
 
 public interface InputLoader {
     boolean hasNextInput();

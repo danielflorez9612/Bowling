@@ -1,4 +1,4 @@
-package bowling.business.throwmarker;
+package bowling.throwmarker;
 
 import bowling.exceptions.GameException;
 import bowling.model.FinishedGame;

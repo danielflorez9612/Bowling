@@ -1,6 +1,6 @@
-package bowling.business.printer;
+package bowling.printer;
 
-import bowling.business.GameMode;
+import bowling.GameMode;
 import bowling.model.FinishedGame;
 import bowling.model.ScoredFrame;
 import bowling.model.ScoredPlayer;
@@ -52,10 +52,10 @@ public class ConsoleGamePrinter implements GamePrinter {
     private void printScoredPlayer(ScoredPlayer scoredPlayer) {
         System.out.println(scoredPlayer.getPlayer().getName());
         System.out.print("Pinfalls");
-        scoredPlayer.getScores().forEach(this::printFrame);
+        scoredPlayer.getScores().stream().limit(gameMode.getMaxThrows() + 2).forEach(this::printFrame);
         System.out.println();
         System.out.print("Score");
-        scoredPlayer.getScores().stream().limit(10).forEach(ConsoleGamePrinter::printScore);
+        scoredPlayer.getScores().stream().limit(gameMode.getMaxThrows()).forEach(ConsoleGamePrinter::printScore);
         System.out.println();
     }
 
@@ -66,9 +66,9 @@ public class ConsoleGamePrinter implements GamePrinter {
     }
 
     private void printFrames() {
-        System.out.print("Frame" + SEPARATOR);
+        System.out.print("Frame");
         for (int i = 0; i < gameMode.getMaxThrows(); i++) {
-            System.out.print(SEPARATOR + (i + 1));
+            System.out.print(SEPARATOR + SEPARATOR + (i + 1));
         }
         System.out.println();
     }

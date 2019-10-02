@@ -1,4 +1,4 @@
-package bowling.business.parser;
+package bowling.dataloader.parser;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,17 +1,15 @@
 package bowling;
 
-import bowling.business.GameMode;
-import bowling.business.dataloader.ConsoleInputLoader;
-import bowling.business.dataloader.InputLoader;
-import bowling.business.printer.GamePrinter;
-import bowling.business.printer.ConsoleGamePrinter;
-import bowling.business.score.Scorer;
-import bowling.business.score.TenPinScorer;
-import bowling.business.throwmarker.TenPinThrowMarker;
-import bowling.business.throwmarker.ThrowMarker;
-import bowling.business.BowlingGame;
-import bowling.business.parser.ConsoleLineParser;
-import bowling.business.parser.LineParser;
+import bowling.dataloader.ConsoleInputLoader;
+import bowling.dataloader.InputLoader;
+import bowling.printer.GamePrinter;
+import bowling.printer.ConsoleGamePrinter;
+import bowling.score.Scorer;
+import bowling.score.TenPinScorer;
+import bowling.throwmarker.TenPinThrowMarker;
+import bowling.throwmarker.ThrowMarker;
+import bowling.dataloader.parser.ConsoleLineParser;
+import bowling.dataloader.parser.LineParser;
 import bowling.exceptions.GameException;
 
 import java.util.Objects;

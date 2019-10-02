@@ -1,6 +1,6 @@
-package bowling.business.score;
+package bowling.score;
 
-import bowling.business.GameMode;
+import bowling.GameMode;
 import bowling.model.FinishedGame;
 import bowling.model.Frame;
 import bowling.model.ScoredFrame;

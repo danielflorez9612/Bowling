@@ -1,6 +1,4 @@
-package bowling.business.dataloader;
-
-import lombok.extern.log4j.Log4j2;
+package bowling.dataloader;
 
 import java.util.Objects;
 import java.util.Scanner;

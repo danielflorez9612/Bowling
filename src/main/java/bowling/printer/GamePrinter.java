@@ -1,4 +1,4 @@
-package bowling.business.printer;
+package bowling.printer;
 
 import bowling.model.FinishedGame;
 

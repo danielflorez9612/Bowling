@@ -1,7 +1,7 @@
 package bowling.exceptions;
 
-import bowling.business.parser.LineParser;
-import bowling.business.parser.ValidationError;
+import bowling.dataloader.parser.LineParser;
+import bowling.dataloader.parser.ValidationError;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

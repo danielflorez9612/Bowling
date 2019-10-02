@@ -1,4 +1,4 @@
-package bowling.business.score;
+package bowling.score;
 
 import bowling.model.FinishedGame;
 

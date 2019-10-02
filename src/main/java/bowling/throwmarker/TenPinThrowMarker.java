@@ -1,6 +1,6 @@
-package bowling.business.throwmarker;
+package bowling.throwmarker;
 
-import bowling.business.GameMode;
+import bowling.GameMode;
 import bowling.exceptions.GameException;
 import bowling.exceptions.PlayerCantPlayMoreException;
 import bowling.model.*;
@@ -54,7 +54,7 @@ public class TenPinThrowMarker implements ThrowMarker {
             currentFrame.setSecondBall(pins);
         }
         playerGame.addFrame(currentFrame);
-        if (playerGame.getFrameCounter() > getMaxThrows() && currentFrame.getTotalScore() < getMaxThrows()) {
+        if (playerGame.getFrameCounter() > getMaxThrows()+1 && currentFrame.getTotalScore() < getStrikeScore()) {
             throw new PlayerCantPlayMoreException(playerGame.getPlayer().getName());
         }
         return playerGame;

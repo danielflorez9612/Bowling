@@ -1,4 +1,4 @@
-package bowling.business;
+package bowling;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

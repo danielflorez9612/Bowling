@@ -1,10 +1,10 @@
-package bowling.business;
+package bowling;
 
-import bowling.business.parser.LineParser;
-import bowling.business.parser.ParsedLine;
-import bowling.business.printer.GamePrinter;
-import bowling.business.score.Scorer;
-import bowling.business.throwmarker.ThrowMarker;
+import bowling.dataloader.parser.LineParser;
+import bowling.dataloader.parser.ParsedLine;
+import bowling.printer.GamePrinter;
+import bowling.score.Scorer;
+import bowling.throwmarker.ThrowMarker;
 import bowling.exceptions.GameException;
 import bowling.model.FinishedGame;
 import lombok.AllArgsConstructor;
