@@ -37,10 +37,7 @@ public class TenPinThrowMarker implements ThrowMarker {
     }
 
     @Override
-    public FinishedGame finishGame() throws GameException {
-        if(this.playerGames.stream().anyMatch(playerGame -> playerGame.getFrameCounter()< MAX_THROWS)) {
-            throw new UnfinishedGameException();
-        }
+    public FinishedGame finishGame() {
         return new FinishedGame(this.playerGames);
     }
 
