@@ -1,4 +1,4 @@
-package bowling.business;
+package bowling.business.throwmarker;
 
 import bowling.model.Frame;
 import bowling.model.Player;

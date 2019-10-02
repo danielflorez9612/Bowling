@@ -1,11 +1,13 @@
 package bowling.business;
 
+import bowling.business.score.Scorer;
+import bowling.business.throwmarker.ThrowMarker;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Game {
+public class BowlingGame {
     private Scorer scorer;
     private ThrowMarker throwMarker;
 

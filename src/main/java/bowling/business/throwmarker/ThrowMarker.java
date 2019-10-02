@@ -1,4 +1,4 @@
-package bowling.business;
+package bowling.business.throwmarker;
 
 @FunctionalInterface
 public interface ThrowMarker {

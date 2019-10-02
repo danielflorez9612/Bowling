@@ -1,24 +1,29 @@
 package bowling;
 
-import bowling.business.Scorer;
-import bowling.business.TenPinScorer;
-import bowling.business.TenPinThrowMarker;
-import bowling.business.ThrowMarker;
-import bowling.business.Game;
+import bowling.business.dataloader.ConsoleInputLoader;
+import bowling.business.dataloader.InputLoader;
+import bowling.business.score.Scorer;
+import bowling.business.score.TenPinScorer;
+import bowling.business.throwmarker.TenPinThrowMarker;
+import bowling.business.throwmarker.ThrowMarker;
+import bowling.business.BowlingGame;
 
-import java.util.Scanner;
+import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) {
         Scorer scorer = new TenPinScorer();
         ThrowMarker marker = new TenPinThrowMarker();
-        Game tenPinGame = new Game(scorer, marker);
-        Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNextLine()) {
-            String[] frameParts = scanner.nextLine().split(" ");
+        InputLoader inputLoader = new ConsoleInputLoader();
+        BowlingGame tenPinGame = new BowlingGame(scorer, marker);
+        while (inputLoader.hasNextInput()) {
+            String line = inputLoader.getLine();
+            if(Objects.isNull(line)) {
+                break;
+            }
+            String[] frameParts = line.split(" ");
             tenPinGame.registerFrame(frameParts[0], Integer.valueOf(frameParts[1]));
         }
-        scanner.close();
-
+        inputLoader.finish();
     }
 }
