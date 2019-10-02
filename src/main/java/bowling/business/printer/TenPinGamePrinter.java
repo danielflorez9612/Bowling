@@ -1,12 +1,13 @@
 package bowling.business.printer;
 
+import bowling.business.GameMode;
 import bowling.model.FinishedGame;
 import bowling.model.ScoredFrame;
 import bowling.model.ScoredPlayer;
 
 import java.util.Objects;
 
-public class SimpleGamePrinter implements GamePrinter {
+public class TenPinGamePrinter implements GamePrinter {
 
     private static void printFrame(ScoredFrame scoredFrame) {
         if (!Objects.nonNull(scoredFrame.getFrame().getSecondBall())) {
@@ -14,7 +15,7 @@ public class SimpleGamePrinter implements GamePrinter {
             System.out.print("\t");
             printBall(scoredFrame.getFrame().getFirstBall(), false);
         } else {
-            if (scoredFrame.getFrame().getFirstBall() + scoredFrame.getFrame().getSecondBall() == 10) {
+            if (scoredFrame.getFrame().getFirstBall() + scoredFrame.getFrame().getSecondBall() == GameMode.TEN_PIN.getMaxThrows()) {
                 // Spare
                 printBall(scoredFrame.getFrame().getFirstBall(), true);
                 System.out.print("\t/");
@@ -43,7 +44,7 @@ public class SimpleGamePrinter implements GamePrinter {
     private void printScoredPlayer(ScoredPlayer scoredPlayer) {
         System.out.println(scoredPlayer.getPlayer().getName());
         System.out.print("Pinfalls");
-        scoredPlayer.getScores().forEach(SimpleGamePrinter::printFrame);
+        scoredPlayer.getScores().forEach(TenPinGamePrinter::printFrame);
         System.out.println();
         System.out.print("Score");
         scoredPlayer.getScores().stream().limit(10).forEach(this::printScore);

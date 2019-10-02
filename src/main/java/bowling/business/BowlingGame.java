@@ -23,7 +23,7 @@ public class BowlingGame {
         this.throwMarker.markThrow(parsedLine.getPlayerName(), parsedLine.getPins());
     }
 
-    public void printScore() throws GameException {
+    public void printScore()  {
         FinishedGame finishedGame = this.scorer.score(throwMarker.finishGame());
         gamePrinter.print(finishedGame);
     }

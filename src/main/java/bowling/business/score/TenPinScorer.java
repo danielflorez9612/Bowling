@@ -1,5 +1,6 @@
 package bowling.business.score;
 
+import bowling.business.GameMode;
 import bowling.model.FinishedGame;
 import bowling.model.Frame;
 import bowling.model.ScoredFrame;
@@ -18,9 +19,9 @@ public class TenPinScorer implements Scorer {
             ScoredFrame currentFrame = scores.get(i);
             ScoredFrame scoredFrame = new ScoredFrame(currentFrame.getFrame());
             int score = currentFrame.totalScore();
-            if (currentFrame.isStrike()) {
+            if (currentFrame.isStrike(GameMode.TEN_PIN.getStrikeScore())) {
                 score += next(2, scores, i);
-            } else if (currentFrame.isSpare()) {
+            } else if (currentFrame.isSpare(GameMode.TEN_PIN.getStrikeScore())) {
                 score += next(1, scores, i);
             }
             if (!newScores.isEmpty()) {

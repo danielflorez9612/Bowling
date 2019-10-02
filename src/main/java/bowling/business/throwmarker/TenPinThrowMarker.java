@@ -1,8 +1,8 @@
 package bowling.business.throwmarker;
 
+import bowling.business.GameMode;
 import bowling.exceptions.GameException;
 import bowling.exceptions.PlayerCantPlayMoreException;
-import bowling.exceptions.UnfinishedGameException;
 import bowling.model.*;
 import lombok.Data;
 
@@ -13,11 +13,13 @@ import java.util.Set;
 
 @Data
 public class TenPinThrowMarker implements ThrowMarker {
-    private static final Integer MAX_THROWS = 11;
-    private static final Integer STRIKE_SCORE = 10;
+    private int maxThrows;
+    private int strikeScore;
     private Set<PlayerGame> playerGames;
 
     public TenPinThrowMarker() {
+        this.maxThrows = GameMode.TEN_PIN.getMaxThrows();
+        this.strikeScore = GameMode.TEN_PIN.getStrikeScore();
         this.playerGames = new HashSet<>();
     }
 
@@ -45,14 +47,14 @@ public class TenPinThrowMarker implements ThrowMarker {
         Frame currentFrame = playerGame.getLastFrame().orElse(new Frame(0));
         if (Objects.isNull(currentFrame.getFirstBall())) {
             currentFrame.setFirstBall(pins);
-        } else if (Objects.nonNull(currentFrame.getSecondBall()) || currentFrame.getFirstBall().equals(STRIKE_SCORE)) {
+        } else if (Objects.nonNull(currentFrame.getSecondBall()) || currentFrame.getFirstBall().equals(getStrikeScore())) {
             currentFrame = new Frame(currentFrame.getFrameNumber() + 1);
             currentFrame.setFirstBall(pins);
         } else {
             currentFrame.setSecondBall(pins);
         }
         playerGame.addFrame(currentFrame);
-        if (playerGame.getFrameCounter() > MAX_THROWS && currentFrame.getTotalScore()<STRIKE_SCORE) {
+        if (playerGame.getFrameCounter() > getMaxThrows() && currentFrame.getTotalScore() < getMaxThrows()) {
             throw new PlayerCantPlayMoreException(playerGame.getPlayer().getName());
         }
         return playerGame;
