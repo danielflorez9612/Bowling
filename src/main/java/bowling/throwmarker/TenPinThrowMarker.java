@@ -2,6 +2,7 @@ package bowling.throwmarker;
 
 import bowling.GameMode;
 import bowling.exceptions.GameException;
+import bowling.exceptions.InternalFailureException;
 import bowling.exceptions.PlayerCantPlayMoreException;
 import bowling.model.*;
 import lombok.Data;
@@ -30,6 +31,9 @@ public class TenPinThrowMarker implements ThrowMarker {
     @Override
     public void markThrow(String playerName, Integer pins) throws GameException {
         Optional<PlayerGame> playerGame = getPlayerGame(playerName);
+        if (pins>strikeScore) {
+            throw new InternalFailureException();
+        }
         if (playerGame.isPresent()) {
             playerGames.add(score(playerGame.get(), pins));
         } else {

@@ -1,14 +1,15 @@
 package bowling.throwmarker;
 
 
+import bowling.exceptions.GameException;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
 
 public class TenPinThrowMarkerTest {
 
-    @Test
-    public void test() {
-        assertTrue(true);
+    @Test(expected = GameException.class)
+    public void markMoreThan10NotAllowed() throws GameException {
+        TenPinThrowMarker tenPinThrowMarker = new TenPinThrowMarker();
+        tenPinThrowMarker.markThrow("Mark", 11);
     }
 }
