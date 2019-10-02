@@ -38,7 +38,7 @@ public class TenPinThrowMarker implements ThrowMarker {
 
     @Override
     public FinishedGame finishGame() throws GameException {
-        if(this.playerGames.stream().anyMatch(playerGame -> !Objects.equals(playerGame.getFrameCounter(), MAX_THROWS))) {
+        if(this.playerGames.stream().anyMatch(playerGame -> playerGame.getFrameCounter()< MAX_THROWS)) {
             throw new UnfinishedGameException();
         }
         return new FinishedGame(this.playerGames);
@@ -55,7 +55,7 @@ public class TenPinThrowMarker implements ThrowMarker {
             currentFrame.setSecondBall(pins);
         }
         playerGame.addFrame(currentFrame);
-        if (playerGame.getFrameCounter() > MAX_THROWS) {
+        if (playerGame.getFrameCounter() > MAX_THROWS && currentFrame.getTotalScore()<STRIKE_SCORE) {
             throw new PlayerCantPlayMoreException(playerGame.getPlayer().getName());
         }
         return playerGame;

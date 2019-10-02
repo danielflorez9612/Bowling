@@ -46,7 +46,7 @@ public class SimpleGamePrinter implements GamePrinter {
         scoredPlayer.getScores().forEach(SimpleGamePrinter::printFrame);
         System.out.println();
         System.out.print("Score");
-        scoredPlayer.getScores().stream().limit(scoredPlayer.getScores().size() - 1L).forEach(this::printScore);
+        scoredPlayer.getScores().stream().limit(10).forEach(this::printScore);
         System.out.println();
     }
 
