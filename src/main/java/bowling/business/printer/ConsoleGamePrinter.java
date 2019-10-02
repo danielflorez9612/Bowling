@@ -4,21 +4,29 @@ import bowling.business.GameMode;
 import bowling.model.FinishedGame;
 import bowling.model.ScoredFrame;
 import bowling.model.ScoredPlayer;
+import lombok.AllArgsConstructor;
 
 import java.util.Objects;
 
-public class TenPinGamePrinter implements GamePrinter {
+@AllArgsConstructor
+public class ConsoleGamePrinter implements GamePrinter {
+    private static final String SEPARATOR = "\t";
+    private GameMode gameMode;
 
-    private static void printFrame(ScoredFrame scoredFrame) {
+    private static void printScore(ScoredFrame scoredFrame) {
+        System.out.print(SEPARATOR + SEPARATOR + scoredFrame.getScore());
+    }
+
+    private void printFrame(ScoredFrame scoredFrame) {
         if (!Objects.nonNull(scoredFrame.getFrame().getSecondBall())) {
             // Strike
-            System.out.print("\t");
+            System.out.print(SEPARATOR);
             printBall(scoredFrame.getFrame().getFirstBall(), false);
         } else {
-            if (scoredFrame.getFrame().getFirstBall() + scoredFrame.getFrame().getSecondBall() == GameMode.TEN_PIN.getMaxThrows()) {
+            if (scoredFrame.getFrame().getFirstBall() + scoredFrame.getFrame().getSecondBall() == this.gameMode.getMaxThrows()) {
                 // Spare
                 printBall(scoredFrame.getFrame().getFirstBall(), true);
-                System.out.print("\t/");
+                System.out.print(SEPARATOR + "/");
             } else {
                 // Normal
                 printBall(scoredFrame.getFrame().getFirstBall(), true);
@@ -27,37 +35,41 @@ public class TenPinGamePrinter implements GamePrinter {
         }
     }
 
-    private static void printBall(Integer ball, boolean printZero) {
+    private void printBall(Integer ball, boolean printZero) {
         String ballRepresentation;
         if (ball.equals(0) && !printZero) {
             ballRepresentation = "";
-        } else if (ball.equals(10)) {
+        } else if (ball.equals(gameMode.getStrikeScore())) {
             ballRepresentation = "X";
         } else if (ball.equals(-1)) {
             ballRepresentation = "F";
         } else {
             ballRepresentation = String.valueOf(ball);
         }
-        System.out.print("\t" + ballRepresentation);
+        System.out.print(SEPARATOR + ballRepresentation);
     }
 
     private void printScoredPlayer(ScoredPlayer scoredPlayer) {
         System.out.println(scoredPlayer.getPlayer().getName());
         System.out.print("Pinfalls");
-        scoredPlayer.getScores().forEach(TenPinGamePrinter::printFrame);
+        scoredPlayer.getScores().forEach(this::printFrame);
         System.out.println();
         System.out.print("Score");
-        scoredPlayer.getScores().stream().limit(10).forEach(this::printScore);
+        scoredPlayer.getScores().stream().limit(10).forEach(ConsoleGamePrinter::printScore);
         System.out.println();
-    }
-
-    private void printScore(ScoredFrame scoredFrame) {
-        System.out.print("\t\t" + scoredFrame.getScore());
     }
 
     @Override
     public void print(FinishedGame finishedGame) {
-        System.out.println("Frame\t\t1\t\t2\t\t3\t\t5\t\t5\t\t6\t\t7\t\t8\t\t9\t\t10");
+        this.printFrames();
         finishedGame.getScoredPlayers().forEach(this::printScoredPlayer);
+    }
+
+    private void printFrames() {
+        System.out.print("Frame" + SEPARATOR);
+        for (int i = 0; i < gameMode.getMaxThrows(); i++) {
+            System.out.print(SEPARATOR + (i + 1));
+        }
+        System.out.println();
     }
 }

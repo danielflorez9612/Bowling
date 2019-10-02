@@ -44,7 +44,7 @@ public class TenPinThrowMarker implements ThrowMarker {
     }
 
     private PlayerGame score(PlayerGame playerGame, Integer pins) throws GameException {
-        Frame currentFrame = playerGame.getLastFrame().orElse(new Frame(0));
+        Frame currentFrame = playerGame.getLastFrame().orElse(new Frame(1));
         if (Objects.isNull(currentFrame.getFirstBall())) {
             currentFrame.setFirstBall(pins);
         } else if (Objects.nonNull(currentFrame.getSecondBall()) || currentFrame.getFirstBall().equals(getStrikeScore())) {
