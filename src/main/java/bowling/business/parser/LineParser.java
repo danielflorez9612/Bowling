@@ -3,7 +3,7 @@ package bowling.business.parser;
 import bowling.exceptions.GameException;
 import bowling.exceptions.LineValidationException;
 
-
+@FunctionalInterface
 public interface LineParser {
     default ParsedLine parse(String line) throws GameException {
         ParsedLine parsedLine = new ParsedLine();
@@ -20,6 +20,7 @@ public interface LineParser {
         } catch (NumberFormatException ignored) {
             throw new LineValidationException(this, new ValidationError(ValidationErrorCatalog.INVALID_FORMAT));
         }
+        return parsedLine;
     }
     void onError(ValidationError err);
 }

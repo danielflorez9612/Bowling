@@ -1,8 +1,8 @@
 package bowling.business.score;
 
-import bowling.business.BowlingGame;
-import bowling.model.ScoredGame;
+import bowling.model.FinishedGame;
 
+@FunctionalInterface
 public interface Scorer {
-    ScoredGame score(BowlingGame bowlingGame);
+    FinishedGame score(FinishedGame bowlingGame);
 }

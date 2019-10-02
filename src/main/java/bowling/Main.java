@@ -27,10 +27,14 @@ public class Main {
                     break;
                 }
                 tenPinGame.registerFrame(line);
-                lineParser.parse(line);
             } catch (GameException e) {
                 e.onError();
             }
+        }
+        try {
+            tenPinGame.printScore();
+        } catch (GameException e) {
+            e.onError();
         }
         inputLoader.finish();
     }

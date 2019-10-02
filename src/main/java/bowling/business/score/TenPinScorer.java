@@ -1,11 +1,10 @@
 package bowling.business.score;
 
-import bowling.business.BowlingGame;
-import bowling.model.ScoredGame;
+import bowling.model.FinishedGame;
 
 public class TenPinScorer implements Scorer {
     @Override
-    public ScoredGame score(BowlingGame bowlingGame) {
+    public FinishedGame score(FinishedGame bowlingGame) {
         return null;
     }
 }

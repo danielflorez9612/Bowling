@@ -2,9 +2,8 @@ package bowling.business.throwmarker;
 
 import bowling.exceptions.GameException;
 import bowling.exceptions.PlayerCantPlayMoreException;
-import bowling.model.Frame;
-import bowling.model.Player;
-import bowling.model.PlayerGame;
+import bowling.exceptions.UnfinishedGameException;
+import bowling.model.*;
 import lombok.Data;
 
 import java.util.HashSet;
@@ -35,7 +34,14 @@ public class TenPinThrowMarker implements ThrowMarker {
             PlayerGame newGame = new PlayerGame(new Player(playerName));
             playerGames.add(score(newGame, pins));
         }
-        System.out.println(this.playerGames);
+    }
+
+    @Override
+    public FinishedGame finishGame() throws GameException {
+        if(this.playerGames.stream().anyMatch(playerGame -> !Objects.equals(playerGame.getFrameCounter(), MAX_THROWS))) {
+            throw new UnfinishedGameException();
+        }
+        return new FinishedGame(this.playerGames);
     }
 
     private PlayerGame score(PlayerGame playerGame, Integer pins) throws GameException {

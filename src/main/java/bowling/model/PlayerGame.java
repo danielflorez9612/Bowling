@@ -9,7 +9,6 @@ import java.util.*;
 public class PlayerGame {
     @EqualsAndHashCode.Include
     private Player player;
-    @Getter(value = AccessLevel.PRIVATE)
     @Setter(value = AccessLevel.PRIVATE)
     private Set<Frame> frames;
 

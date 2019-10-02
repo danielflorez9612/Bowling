@@ -5,6 +5,7 @@ import bowling.business.parser.ParsedLine;
 import bowling.business.score.Scorer;
 import bowling.business.throwmarker.ThrowMarker;
 import bowling.exceptions.GameException;
+import bowling.model.FinishedGame;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -20,6 +21,8 @@ public class BowlingGame {
         this.throwMarker.markThrow(parsedLine.getPlayerName(), parsedLine.getPins());
     }
 
-
+    public void printScore() throws GameException {
+        FinishedGame finishedGame = this.scorer.score(throwMarker.finishGame());
+        System.out.println(finishedGame);
     }
 }

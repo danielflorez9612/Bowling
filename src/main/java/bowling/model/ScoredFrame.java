@@ -6,4 +6,8 @@ import lombok.Data;
 public class ScoredFrame {
     private Frame frame;
     private Integer score;
+
+    public ScoredFrame(Frame frame) {
+        this.frame = frame;
+    }
 }
