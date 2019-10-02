@@ -5,14 +5,14 @@ import bowling.exceptions.GameException;
 import bowling.exceptions.InternalFailureException;
 import bowling.exceptions.PlayerCantPlayMoreException;
 import bowling.model.*;
-import lombok.Data;
+import lombok.Getter;
 
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-@Data
+@Getter
 public class TenPinThrowMarker implements ThrowMarker {
     private int maxThrows;
     private int strikeScore;
