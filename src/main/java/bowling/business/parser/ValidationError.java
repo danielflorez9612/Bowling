@@ -8,4 +8,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class ValidationError {
     private ValidationErrorCatalog error;
+    private String throwString;
 }

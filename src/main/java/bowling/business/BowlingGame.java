@@ -2,6 +2,7 @@ package bowling.business;
 
 import bowling.business.parser.LineParser;
 import bowling.business.parser.ParsedLine;
+import bowling.business.printer.GamePrinter;
 import bowling.business.score.Scorer;
 import bowling.business.throwmarker.ThrowMarker;
 import bowling.exceptions.GameException;
@@ -15,6 +16,7 @@ public class BowlingGame {
     private Scorer scorer;
     private ThrowMarker throwMarker;
     private LineParser lineParser;
+    private GamePrinter gamePrinter;
 
     public void registerFrame(String line) throws GameException {
         ParsedLine parsedLine = lineParser.parse(line);
@@ -23,6 +25,6 @@ public class BowlingGame {
 
     public void printScore() throws GameException {
         FinishedGame finishedGame = this.scorer.score(throwMarker.finishGame());
-        System.out.println(finishedGame);
+        gamePrinter.print(finishedGame);
     }
 }

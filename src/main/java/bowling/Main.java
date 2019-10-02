@@ -2,6 +2,8 @@ package bowling;
 
 import bowling.business.dataloader.ConsoleInputLoader;
 import bowling.business.dataloader.InputLoader;
+import bowling.business.printer.GamePrinter;
+import bowling.business.printer.SimpleGamePrinter;
 import bowling.business.score.Scorer;
 import bowling.business.score.TenPinScorer;
 import bowling.business.throwmarker.TenPinThrowMarker;
@@ -19,7 +21,8 @@ public class Main {
         ThrowMarker marker = new TenPinThrowMarker();
         InputLoader inputLoader = new ConsoleInputLoader();
         LineParser lineParser = new ConsoleLineParser();
-        BowlingGame tenPinGame = new BowlingGame(scorer, marker, lineParser);
+        GamePrinter gamePrinter = new SimpleGamePrinter();
+        BowlingGame tenPinGame = new BowlingGame(scorer, marker, lineParser, gamePrinter);
         while (inputLoader.hasNextInput()) {
             try {
                 String line = inputLoader.getLine();

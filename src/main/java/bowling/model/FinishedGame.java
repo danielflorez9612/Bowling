@@ -13,4 +13,5 @@ public class FinishedGame {
     public FinishedGame(Collection<PlayerGame> playerGames) {
         this.scoredPlayers = playerGames.stream().map(ScoredPlayer::new).collect(Collectors.toList());
     }
+
 }

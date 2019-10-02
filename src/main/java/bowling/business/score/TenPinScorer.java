@@ -4,7 +4,7 @@ import bowling.model.FinishedGame;
 
 public class TenPinScorer implements Scorer {
     @Override
-    public FinishedGame score(FinishedGame bowlingGame) {
-        return null;
+    public FinishedGame score(FinishedGame finishedGame) {
+        return finishedGame;
     }
 }

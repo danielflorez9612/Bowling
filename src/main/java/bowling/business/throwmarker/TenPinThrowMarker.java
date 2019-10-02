@@ -13,7 +13,7 @@ import java.util.Set;
 
 @Data
 public class TenPinThrowMarker implements ThrowMarker {
-    private static final Integer MAX_THROWS = 10;
+    private static final Integer MAX_THROWS = 11;
     private static final Integer STRIKE_SCORE = 10;
     private Set<PlayerGame> playerGames;
 
