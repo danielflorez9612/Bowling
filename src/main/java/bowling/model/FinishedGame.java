@@ -10,6 +10,10 @@ import java.util.stream.Collectors;
 public class FinishedGame {
     private List<ScoredPlayer> scoredPlayers;
 
+    public FinishedGame(List<ScoredPlayer> scoredPlayers) {
+        this.scoredPlayers = scoredPlayers;
+    }
+
     public FinishedGame(Collection<PlayerGame> playerGames) {
         this.scoredPlayers = playerGames.stream().map(ScoredPlayer::new).collect(Collectors.toList());
     }

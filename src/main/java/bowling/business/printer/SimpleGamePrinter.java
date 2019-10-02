@@ -45,13 +45,13 @@ public class SimpleGamePrinter implements GamePrinter {
         System.out.print("Pinfalls");
         scoredPlayer.getScores().forEach(SimpleGamePrinter::printFrame);
         System.out.println();
-        System.out.print("Score\t");
+        System.out.print("Score");
         scoredPlayer.getScores().stream().limit(scoredPlayer.getScores().size() - 1L).forEach(this::printScore);
         System.out.println();
     }
 
     private void printScore(ScoredFrame scoredFrame) {
-        System.out.print("\t" + scoredFrame.getScore());
+        System.out.print("\t\t" + scoredFrame.getScore());
     }
 
     @Override
